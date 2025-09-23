@@ -115,21 +115,13 @@ echo "Libro más reciente: {$libroMasReciente['titulo']} ({$libroMasReciente['a�
 
 // 10. TAREA: Implementa una función de búsqueda que permita buscar libros por título o autor
 // La función debe ser capaz de manejar búsquedas parciales y no debe ser sensible a mayúsculas/minúsculas
-function buscarLibros($biblioteca, $termino) {
-    // Tu código aquí
-}
-
 // Ejemplo de uso de la función de búsqueda (descomenta para probar)
 // $resultadosBusqueda = buscarLibros($biblioteca, "quijote");
 // echo "Resultados de búsqueda para 'quijote':\n";
 // imprimirBiblioteca($resultadosBusqueda);
-
 // 11. TAREA: Crea una función que genere un reporte de la biblioteca
 // El reporte debe incluir: número total de libros, número de libros prestados,
 // número de libros por género, y el autor con más libros en la biblioteca
-function generarReporteBiblioteca($biblioteca) {
-    // Tu código aquí
-}
 
 function buscarLibros($biblioteca, $termino) {
     $termino = mb_strtolower($termino); // Convertir término a minúsculas
@@ -164,8 +156,6 @@ function generarReporteBiblioteca($biblioteca) {
         'autor_con_mas_libros' => $autorMasLibros
     ];
 }
-
 echo "\nReporte de la Biblioteca:\n";
 print_r(generarReporteBiblioteca($biblioteca));
-
 ?>
