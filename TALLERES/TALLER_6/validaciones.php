@@ -12,6 +12,13 @@ function validarEdad($edad) {
     return is_numeric($edad) && $edad >= 18 && $edad <= 120;
 }
 
+function validarEdad($fechanacimiento, $edadMinima = 18) {
+    $fechaNacimiento = new DateTime($fechanacimiento);
+    $hoy = new DateTime();
+    $edad = $hoy->diff($fechaNacimiento)->y;
+    return $edad >= $edadMinima;
+}
+
 function validarSitioWeb($sitioWeb) {
     return empty($sitioWeb) || filter_var($sitioWeb, FILTER_VALIDATE_URL);
 }
