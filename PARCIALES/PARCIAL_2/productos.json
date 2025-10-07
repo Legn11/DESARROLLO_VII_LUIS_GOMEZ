@@ -20,27 +20,7 @@
         "fechaVencimiento": "2025-03-15"
     },
     {
-        "id": 3,
-        "nombre": "Camiseta Deportiva Nike",
-        "descripcion": "Camiseta Dri-FIT para entrenamiento",
-        "estado": "agotado",
-        "stock": 0,
-        "fechaIngreso": "2024-07-20",
-        "categoria": "ropa",
-        "talla": "M"
-    },
-    {
         "id": 4,
-        "nombre": "Laptop Lenovo",
-        "descripcion": "Producto",
-        "estado": "disponible",
-        "stock": "3",
-        "fechaIngreso": "2025-10-07",
-        "categoria": "electronico",
-        "garantiaMeses": "4"
-    },
-    {
-        "id": 5,
         "nombre": "Laptop Lenovo",
         "descripcion": "Producto",
         "estado": "disponible",

@@ -100,15 +100,20 @@ class GestorInventario {
          $this->persistirEnArchivo();
      }
 
-     public function eliminar($idProducto) {
-        foreach ($this->productos as $indice => $producto) {
-            if ($producto['id'] == $idProducto) {
-                unset($this->productos[$indice]);
-                $this->productos = array_values($this->productos); 
-                return true;
+    public function eliminar($idProducto){
+        $this->cargarDesdeArchivo();
+        $c = 0 ;
+        $items = [];
+        foreach ($this->items as $item) {
+            if($item->id != $idProducto){
+                $items[] = $item;
+                $c++;
+
             }
+            
         }
-        return false;
+        $this->items = $items;
+        $this->persistirEnArchivo();
     }
 
     private function persistirEnArchivo() {
