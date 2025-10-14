@@ -21,6 +21,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $error = "Usuario o contraseña incorrectos";
     }
 }
+
+// Generar token CSRF
+$_SESSION['csrf_token'] = bin2hex(random_bytes(32));
 ?>
 
 <!DOCTYPE html>
@@ -41,6 +44,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         <input type="text" id="usuario" name="usuario" required><br><br>
         <label for="contrasena">Contraseña:</label><br>
         <input type="password" id="contrasena" name="contrasena" required><br><br>
+        <input type="submit" value="Iniciar Sesión">
+        <input type="hidden" name="csrf_token" value="<?php echo $_SESSION['csrf_token']; ?>">
         <input type="submit" value="Iniciar Sesión">
     </form>
 </body>
