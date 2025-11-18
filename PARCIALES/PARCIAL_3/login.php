@@ -1,10 +1,7 @@
 <?php
 session_start();
 
-$users = [
-    'profesor' => ['password' => '12345', 'role' => 'profesor'],
-    'estudiante' => ['password' => 'abcd', 'role' => 'estudiante']
-];
+include 'usuarios.php';
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $username = $_POST['username'] ?? '';
@@ -17,20 +14,21 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     }
 
     if (strlen($password) < 5) {
-        $error = $error ? $error . "
-La contraseña debe tener al menos 5 caracteres." : "La contraseña debe tener al menos 5 caracteres.";
+        $error = $error ? $error . "\nLa contraseña debe tener al menos 5 caracteres." : "La contraseña debe tener al menos 5 caracteres.";
     }
 
     if (empty($error)) {
-        if (isset($users[$username]) && $users[$username]['password'] === $password) {
+        if (isset($usuarios[$username]) && $usuarios[$username]['password'] === $password) {
+
             $_SESSION['user'] = [
                 'username' => $username,
-                'role' => $users[$username]['role']
+                'role' => $usuarios[$username]['role']
             ];
-            if ($users[$username]['role'] === 'profesor') {
+
+            if ($usuarios[$username]['role'] === 'profesor') {
                 header('Location: profesor.php');
             } else {
-                header('Location: dashboard_estudiante.php');
+                header('Location: estudiante.php');
             }
             exit();
         } else {
@@ -39,6 +37,7 @@ La contraseña debe tener al menos 5 caracteres." : "La contraseña debe tener a
     }
 }
 ?>
+
 
 <!DOCTYPE html>
 <html lang="es">

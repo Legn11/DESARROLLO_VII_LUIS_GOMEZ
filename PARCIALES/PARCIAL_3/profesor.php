@@ -1,19 +1,12 @@
 <?php
 session_start();
 
-// Validar que el usuario esté autenticado y sea profesor
 if (!isset($_SESSION['user']) || $_SESSION['user']['role'] !== 'profesor') {
     header('Location: index.php');
     exit();
 }
 
-// Lista de estudiantes
-$estudiantes = [
-    ["nombre" => "Juan Pérez", "calificacion" => 88],
-    ["nombre" => "María Gómez", "calificacion" => 92],
-    ["nombre" => "Carlos Díaz", "calificacion" => 75],
-    ["nombre" => "Ana Torres", "calificacion" => 85]
-];
+include 'calificaciones.php';
 ?>
 
 <!DOCTYPE html>
@@ -28,15 +21,19 @@ $estudiantes = [
 
     <table border="1" cellpadding="8" cellspacing="0">
         <tr>
-            <th>Nombre del Estudiante</th>
+            <th>Estudiante</th>
+            <th>Materia</th>
             <th>Calificación</th>
         </tr>
 
-        <?php foreach ($estudiantes as $est) : ?>
-            <tr>
-                <td><?php echo $est['nombre']; ?></td>
-                <td><?php echo $est['calificacion']; ?></td>
-            </tr>
+        <?php foreach ($calificaciones as $nombreEstudiante => $materias) : ?>
+            <?php foreach ($materias as $materiaInfo) : ?>
+                <tr>
+                    <td><?php echo ucfirst($nombreEstudiante); ?></td>
+                    <td><?php echo $materiaInfo['materia']; ?></td>
+                    <td><?php echo $materiaInfo['nota']; ?></td>
+                </tr>
+            <?php endforeach; ?>
         <?php endforeach; ?>
     </table>
 
