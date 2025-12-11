@@ -7,7 +7,7 @@ class Database {
         $host = "localhost";
         $db   = "techparts_db";
         $user = "root";
-        $pass = "";
+        $pass = "Mango12345";
         $charset = "utf8mb4";
 
         $dsn = "mysql:host=$host;dbname=$db;charset=$charset";

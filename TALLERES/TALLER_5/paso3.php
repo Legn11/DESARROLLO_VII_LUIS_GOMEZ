@@ -78,7 +78,6 @@ function estudiantesHonor($estudiantes) {
     return $honor;
 }
 
-
 $tutoria = estudiantesTutoría($estudiantes);
 $honor = estudiantesHonor($estudiantes);
 

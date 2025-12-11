@@ -100,12 +100,14 @@ class GestorInventario {
          $this->persistirEnArchivo();
      }
 
-    public function eliminar($idProducto){
+public function eliminar($idProducto){
         $this->cargarDesdeArchivo();
         $c = 0 ;
         $items = [];
         foreach ($this->items as $item) {
+            print_r("valor de item id:$item->id\n valor de id a eliminar: $idProducto\n");
             if($item->id != $idProducto){
+                print_r($idProducto);
                 $items[] = $item;
                 $c++;
 

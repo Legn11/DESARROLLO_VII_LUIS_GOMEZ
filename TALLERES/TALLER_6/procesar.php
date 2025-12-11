@@ -7,15 +7,26 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $datos = [];
 
     // Procesar y validar cada campo
-    $campos = ['nombre', 'email', 'edad', 'sitio_web', 'genero', 'intereses', 'comentarios'];
+    $campos = ['nombre', 'email', 'fecha_nacimiento', 'sitio_web', 'genero', 'intereses', 'comentarios'];
     foreach ($campos as $campo) {
         if (isset($_POST[$campo])) {
             $valor = $_POST[$campo];
             $valorSanitizado = call_user_func("sanitizar" . ucfirst($campo), $valor);
             $datos[$campo] = $valorSanitizado;
 
-            if (!call_user_func("validar" . ucfirst($campo), $valorSanitizado)) {
-                $errores[] = "El campo $campo no es válido.";
+            if ($campo === 'fecha_nacimiento') {
+                $fechaNacimientoObj = new DateTime($valorSanitizado);
+                $hoy = new DateTime();
+                $edad = $hoy->diff($fechaNacimientoObj)->y;
+                $datos['edad'] = $edad;
+
+                if (!validarEdad($valorSanitizado)) {
+                    $errores[] = "Debes tener entre 18 y 120 años.";
+                }
+            } else {
+                if (!call_user_func("validar" . ucfirst($campo), $valorSanitizado)) {
+                    $errores[] = "El campo $campo no es válido.";
+                }
             }
         }
     }

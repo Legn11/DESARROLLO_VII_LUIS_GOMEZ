@@ -3,7 +3,6 @@ require_once "database.php";
 
 $db = Database::getInstance()->getConnection();
 
-// Obtener todos los productos
 $query = $db->query("SELECT * FROM productos ORDER BY id DESC");
 $productos = $query->fetchAll();
 ?>
@@ -33,9 +32,6 @@ $productos = $query->fetchAll();
 <body>
 
 <h2>Listado de Productos</h2>
-
-<a href="registrar.php"> Registrar nuevo producto</a>
-<br><br>
 
 <table>
     <thead>
